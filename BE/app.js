@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var Product = require('./routes/Product');
@@ -11,13 +11,26 @@ var Comments = require('./routes/Comments');
 
 var app = express();
 
+var whitelist = ['https://hl-project-9455e.web.app']
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000','https://hl-project-9455e.web.app/');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000','https://hl-project-9455e.web.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 })
+app.use(cors(corsOptions))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
