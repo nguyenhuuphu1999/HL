@@ -15,7 +15,7 @@ const Content = () => {
       .get(process.env.REACT_APP_API_KEY + "/product/" + index)
       .then((res) => {
         setData(res.data.data);
-        console.log(res.data);
+        console.log(res.data.error);
         
         if(res.data.error){
             setIsFlag(true)
@@ -31,9 +31,10 @@ const Content = () => {
   }, []);
 
   const handleNext =  () => {
+    setData(null)
      setIndex(index + 1);
-     CallData(index);
-    console.log(index);
+     CallData(index + 1);
+  
   };
   return (
     <Container>

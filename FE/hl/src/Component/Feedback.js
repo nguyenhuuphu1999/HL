@@ -40,6 +40,7 @@ const Feedback = (props) => {
 
   const hanldSunmitComment = (e) => {
     e.preventDefault();
+
     console.log(comment);
     axios
       .post(process.env.REACT_APP_API_KEY + "/comment", {
@@ -49,6 +50,7 @@ const Feedback = (props) => {
       })
       .then((res) => {
         console.log(res.data);
+        setComment('')
         if (!res.data.error) {
           setOpen(true);
         }
@@ -66,7 +68,7 @@ const Feedback = (props) => {
   return (
     <Grid container>
       <Grid item xs={12} sm={12} md={11} lg={11}>
-        {!props.flag ? (
+        {props.flag == false  ? (
           <div className="feedback">
             <FormControlLabel
               control={
@@ -93,6 +95,7 @@ const Feedback = (props) => {
                   variant="outlined"
                   onChange={handleChangValue}
                   name="comment"
+                  value={comment}
                 />
                 {iscomment ? (
                   <Button variant="contained" color="primary" type="submit">
@@ -112,7 +115,7 @@ const Feedback = (props) => {
       </Grid>
       <Grid item xs={12} sm={12} md={1} lg={1}>
         <div className="next">
-          {!props.flag ? (
+          {props.flag== false ? (
             <Button
               variant="contained"
               color="primary"
