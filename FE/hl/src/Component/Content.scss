@@ -1,0 +1,21 @@
+.content {
+
+  .start-item {
+    background: url(https://img.truyentr.com/2020/12/spriteimg_new_white_op.png)
+      0 -51px no-repeat;
+    width: 277px;
+    height: 35px;
+  }
+  .title {
+    text-align: center;
+  }
+  .content-item {
+      padding: 10px 0px;
+    &:first-child {
+      padding: 30px 0px;
+    }
+    &:last-child {
+      padding: 30px 0px;
+    }
+  }
+}

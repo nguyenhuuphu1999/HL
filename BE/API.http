@@ -1,0 +1,15 @@
+GET http://localhost:9999/product/6
+
+###
+GET http://localhost:9999/product/
+
+###
+POST http://localhost:9999/comment/
+Content-Type: application/json
+
+{
+       "id_user":1,
+        "id_product":2,
+        "comment":"comment",
+       
+}
