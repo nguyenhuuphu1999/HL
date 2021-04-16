@@ -14,7 +14,7 @@ router.get('/:STT',async(req,res)=>{
             as: 'chirend',
         }]
     })
-    console.log(result)
+
    if(result != null){
     res.json({
         message:'get data successfull',
